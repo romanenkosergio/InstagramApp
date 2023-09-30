@@ -1,13 +1,14 @@
 import {FC} from 'react';
 import {Image, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import {Auth} from 'aws-amplify';
 
 import Button from '../../components/Button';
 
+import {ProfileNavigationProp} from '../../types/navigation';
 import user from '../../assets/data/user.json';
 
 import styles from './styles';
-import {ProfileNavigationProp} from '../../navigation/types';
 
 const ProfileHeader: FC = () => {
   const navigation = useNavigation<ProfileNavigationProp>();
@@ -41,7 +42,7 @@ const ProfileHeader: FC = () => {
           text="Edit Profile"
           onPress={() => navigation.navigate('Edit Profile')}
         />
-        <Button text="Another Button" onPress={() => navigation.goBack()} />
+        <Button text="Sign Out" onPress={() => Auth.signOut()} />
       </View>
     </View>
   );

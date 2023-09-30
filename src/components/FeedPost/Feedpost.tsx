@@ -13,7 +13,7 @@ import Comment from '../Comment';
 
 import colors from '../../theme/colors';
 import IFeedPostProps from './types';
-import {FeedNavigationProp} from '../../navigation/types';
+import {FeedNavigationProp} from '../../types/navigation';
 
 import styles from './styles';
 
