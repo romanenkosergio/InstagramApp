@@ -78,8 +78,6 @@ const EditProfile: FC = () => {
     },
   });
 
-  console.log(errors);
-
   const onSubmit = (data: IEditableUser) => {
     console.warn('Submit', data);
     Keyboard.dismiss();

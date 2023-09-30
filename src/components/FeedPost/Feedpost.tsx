@@ -4,20 +4,24 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
-import colors from '../../theme/colors';
+import {useNavigation} from '@react-navigation/native';
 
 import DoublePressable from '../DoublePressable';
 import Carousel from '../Carousel';
 import VideoPlayer from '../VideoPlayer';
-
 import Comment from '../Comment';
 
+import colors from '../../theme/colors';
 import IFeedPostProps from './types';
+import {FeedNavigationProp} from '../../navigation/types';
+
 import styles from './styles';
 
 const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState<boolean>(false);
+
+  const navigation = useNavigation<FeedNavigationProp>();
 
   const toggleDescriptionExpanded = () => {
     setIsDescriptionExpanded(prevState => !prevState);
@@ -25,6 +29,14 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
 
   const toggleLike = () => {
     setIsLiked(prevState => !prevState);
+  };
+
+  const navigateUser = () => {
+    navigation.navigate('UserProfile', {userId: post.user.id});
+  };
+
+  const navigateToComments = () => {
+    navigation.navigate('Comments', {postId: post.id});
   };
 
   let content = null;
@@ -58,7 +70,9 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
           }}
           style={styles.userAvatar}
         />
-        <Text style={styles.userName}>{post.user.username}</Text>
+        <Text onPress={navigateUser} style={styles.userName}>
+          {post.user.username}
+        </Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -102,7 +116,9 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
         </Text>
 
         {/* Comments */}
-        <Text>View all {post.nofComments} comments</Text>
+        <Text onPress={navigateToComments}>
+          View all {post.nofComments} comments
+        </Text>
         {post.comments.map(comment => (
           <Comment key={`comment-${comment.id}`} comment={comment} />
         ))}

@@ -1,14 +1,9 @@
 import {FC} from 'react';
-import {SafeAreaView} from 'react-native';
 
-import PostUploadScreen from './src/screens/PostUploadScreen';
+import Navigation from './src/navigation';
 
 const App: FC = () => {
-  return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#FFF'}}>
-      <PostUploadScreen />
-    </SafeAreaView>
-  );
+  return <Navigation />;
 };
 
 export default App;
