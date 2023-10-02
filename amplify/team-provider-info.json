@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-instagram-staging-174321-authRole",
+      "UnauthRoleArn": "arn:aws:iam::189289918902:role/amplify-instagram-staging-174321-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::189289918902:role/amplify-instagram-staging-174321-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-instagram-staging-174321-deployment",
+      "UnauthRoleName": "amplify-instagram-staging-174321-unauthRole",
+      "StackName": "amplify-instagram-staging-174321",
+      "StackId": "arn:aws:cloudformation:eu-north-1:189289918902:stack/amplify-instagram-staging-174321/d9989220-5fb8-11ee-b5e3-068dee6d4982",
+      "AmplifyAppId": "dh96uoculh9np"
+    },
+    "categories": {
+      "auth": {
+        "Instagram": {}
+      }
+    }
+  }
+}

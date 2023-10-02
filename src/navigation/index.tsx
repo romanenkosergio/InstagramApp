@@ -33,7 +33,7 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 
 const Navigation = () => {
   const {user} = useAuthContext();
-  if (!user) {
+  if (user === undefined) {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator />
