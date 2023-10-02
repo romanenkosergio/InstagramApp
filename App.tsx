@@ -3,6 +3,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Amplify} from 'aws-amplify';
 
 import Navigation from './src/navigation';
+import AuthContextProvider from './src/context/AuthContext';
+
 import awsExports from './src/aws-exports';
 
 Amplify.configure(awsExports);
@@ -10,7 +12,9 @@ Amplify.configure(awsExports);
 const App: FC = () => {
   return (
     <SafeAreaProvider>
-      <Navigation />
+      <AuthContextProvider>
+        <Navigation />
+      </AuthContextProvider>
     </SafeAreaProvider>
   );
 };

@@ -1,23 +1,20 @@
-import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
+import {useState} from 'react';
+import {Alert, ScrollView, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
+import {useForm} from 'react-hook-form';
+
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
-import {useNavigation} from '@react-navigation/core';
-import {useForm} from 'react-hook-form';
+
+import SignUpData from './types';
 import {SignUpNavigationProp} from '../../../types/navigation';
-import colors from '../../../theme/colors';
+
+import styles from './styles';
 import {Auth} from 'aws-amplify';
-import {useState} from 'react';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-type SignUpData = {
-  name: string;
-  email: string;
-  password: string;
-  passwordRepeat: string;
-};
 
 const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm<SignUpData>();
@@ -25,22 +22,25 @@ const SignUpScreen = () => {
   const navigation = useNavigation<SignUpNavigationProp>();
   const [loading, setLoading] = useState(false);
 
-  const onRegisterPressed = async ({name, email, password}: SignUpData) => {
+  const onRegisterPressed = async ({
+    name,
+    username,
+    password,
+    email,
+  }: SignUpData) => {
     if (loading) {
       return;
     }
     setLoading(true);
-
     try {
       await Auth.signUp({
-        username: email,
+        username,
         password,
-        attributes: {name, email},
+        attributes: {email, name},
       });
-
-      navigation.navigate('Confirm email', {email});
-    } catch (e) {
-      Alert.alert('Oops', (e as Error).message);
+      navigation.navigate('Confirm email', {username});
+    } catch (error) {
+      Alert.alert('Error', (error as Error).message);
     } finally {
       setLoading(false);
     }
@@ -80,6 +80,14 @@ const SignUpScreen = () => {
           }}
         />
 
+        <FormInput
+          name="username"
+          control={control}
+          placeholder="Username"
+          rules={{
+            required: 'username is required',
+          }}
+        />
         <FormInput
           name="email"
           control={control}
@@ -140,25 +148,5 @@ const SignUpScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.black,
-    margin: 10,
-  },
-  text: {
-    color: 'gray',
-    marginVertical: 10,
-  },
-  link: {
-    color: colors.primary,
-  },
-});
 
 export default SignUpScreen;

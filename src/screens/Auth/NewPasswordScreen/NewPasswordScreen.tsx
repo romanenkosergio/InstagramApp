@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
-import {NewPasswordNavigationProp} from '../../../types/navigation';
 import {Auth} from 'aws-amplify';
 
-type NewPasswordType = {
-  email: string;
-  code: string;
-  password: string;
-};
+import FormInput from '../components/FormInput';
+import CustomButton from '../components/CustomButton';
+
+import {NewPasswordNavigationProp} from '../../../types/navigation';
+import NewPasswordType from './types';
 
 const NewPasswordScreen = () => {
   const {control, handleSubmit} = useForm<NewPasswordType>();
@@ -19,14 +16,18 @@ const NewPasswordScreen = () => {
 
   const navigation = useNavigation<NewPasswordNavigationProp>();
 
-  const onSubmitPressed = async ({email, code, password}: NewPasswordType) => {
+  const onSubmitPressed = async ({
+    username,
+    code,
+    password,
+  }: NewPasswordType) => {
     if (loading) {
       return;
     }
     setLoading(true);
 
     try {
-      await Auth.forgotPasswordSubmit(email, code, password);
+      await Auth.forgotPasswordSubmit(username, code, password);
       navigation.navigate('Sign in');
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
@@ -45,10 +46,10 @@ const NewPasswordScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
 
         <FormInput
-          placeholder="Email"
-          name="email"
+          placeholder="Username"
+          name="username"
           control={control}
-          rules={{required: 'Email is required'}}
+          rules={{required: 'Username is required'}}
         />
 
         <FormInput

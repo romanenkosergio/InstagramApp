@@ -4,7 +4,6 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
-import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 
 export type RootNavigatorParamList = {
   Home: undefined;
@@ -100,7 +99,7 @@ export type FeedNavigationProp = NativeStackNavigationProp<
 >;
 
 export type ProfileStackNavigatorParamList = {
-  Profile: {userId: string}; 
+  Profile: {userId: string};
   'Edit Profile': undefined;
   UserFollow: {
     id: string;
@@ -121,7 +120,7 @@ export type ProfileNavigationProp = NativeStackNavigationProp<
 export type AuthStackNavigatorParamList = {
   'Sign in': undefined;
   'Sign up': undefined;
-  'Confirm email': {email?: string};
+  'Confirm email': {username?: string};
   'Forgot password': undefined;
   'New password': undefined;
 };

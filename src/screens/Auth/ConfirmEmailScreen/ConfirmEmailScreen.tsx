@@ -1,44 +1,41 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
-import FormInput from '../components/FormInput';
-import CustomButton from '../components/CustomButton';
-import SocialSignInButtons from '../components/SocialSignInButtons';
+import React, {FC, useState} from 'react';
+import {Alert, ScrollView, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
+import {useRoute} from '@react-navigation/native';
+import {Auth} from 'aws-amplify';
+
+import FormInput from '../components/FormInput';
+import CustomButton from '../components/CustomButton';
 import {
   ConfirmEmailNavigationProp,
   ConfirmEmailRouteProp,
 } from '../../../types/navigation';
-import {useRoute} from '@react-navigation/native';
-import {Auth} from 'aws-amplify';
+import ConfirmEmailData from './types';
+
+import styles from './styles';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-type ConfirmEmailData = {
-  email: string;
-  code: string;
-};
-
-const ConfirmEmailScreen = () => {
+const ConfirmEmailScreen: FC = () => {
   const route = useRoute<ConfirmEmailRouteProp>();
   const {control, handleSubmit, watch} = useForm<ConfirmEmailData>({
-    defaultValues: {email: route.params.email},
+    defaultValues: {username: route.params.username},
   });
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
 
-  const email = watch('email');
+  const usr = watch('username');
 
-  const onConfirmPressed = async ({email, code}: ConfirmEmailData) => {
+  const onConfirmPressed = async ({username, code}: ConfirmEmailData) => {
     if (loading) {
       return;
     }
     setLoading(true);
-
     try {
-      await Auth.confirmSignUp(email, code);
+      await Auth.confirmSignUp(username, code);
       navigation.navigate('Sign in');
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
@@ -53,8 +50,7 @@ const ConfirmEmailScreen = () => {
 
   const onResendPress = async () => {
     try {
-      await Auth.resendSignUp(email);
-      Alert.alert('Check your email', 'The code has been sent');
+      await Auth.resendSignUp(usr);
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
     }
@@ -66,12 +62,11 @@ const ConfirmEmailScreen = () => {
         <Text style={styles.title}>Confirm your email</Text>
 
         <FormInput
-          name="email"
+          name="username"
           control={control}
-          placeholder="Email"
+          placeholder="username"
           rules={{
             required: 'Username is required',
-            pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
           }}
         />
 
@@ -104,25 +99,5 @@ const ConfirmEmailScreen = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#051C60',
-    margin: 10,
-  },
-  text: {
-    color: 'gray',
-    marginVertical: 10,
-  },
-  link: {
-    color: '#FDB075',
-  },
-});
 
 export default ConfirmEmailScreen;
