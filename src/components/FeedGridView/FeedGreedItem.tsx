@@ -8,10 +8,7 @@ import colors from '../../theme/colors';
 const FeedGreedItem: FC<IFeedGreedItemProps> = ({post}) => {
   return (
     <View style={{flex: 1, aspectRatio: 1, padding: 1, maxWidth: '33.33%'}}>
-      <Image
-        source={{uri: post.images ? post.images[0] : post.image}}
-        style={{flex: 1}}
-      />
+      <Image source={{uri: post.image || post.images?.[0]}} style={{flex: 1}} />
       {post.images?.length && (
         <MaterialIcons
           name="collections"

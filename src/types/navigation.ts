@@ -7,7 +7,9 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 
 export type RootNavigatorParamList = {
   Home: undefined;
-  Comments: {postId: string};
+  Comments: {
+    postId: string;
+  };
   Auth: undefined;
   EditProfile: undefined;
 };
@@ -17,7 +19,9 @@ export type BottomTabNavigatorParamList = {
   Search: undefined;
   Upload: undefined;
   Notifications: undefined;
-  MyProfile: undefined;
+  MyProfile: {
+    userId?: string;
+  };
 };
 
 export type SearchTabNavigatorParamList = {
@@ -31,6 +35,7 @@ export type UserFollowTabNavigatorParamList = {
 };
 
 export type UploadStackNavigatorParamList = {
+  HomeStack: undefined;
   Camera: undefined;
   Create: {
     image?: string;
@@ -69,8 +74,15 @@ export type MyProfileRouteProp = RouteProp<
 export type HomeStackNavigatorParamList = {
   Feed: undefined;
   UserProfile: NavigatorScreenParams<ProfileStackNavigatorParamList>;
-  UpdatePost: {id: string};
-  PostLikes: {id: string};
+  UpdatePost: {
+    id: string;
+  };
+  PostLikes: {
+    id: string;
+  };
+  Comments: {
+    postId: string;
+  };
 };
 
 export type PostLikesRouteProp = RouteProp<
@@ -99,7 +111,9 @@ export type FeedNavigationProp = NativeStackNavigationProp<
 >;
 
 export type ProfileStackNavigatorParamList = {
-  Profile: {userId: string};
+  Profile: {
+    userId: string;
+  };
   'Edit Profile': undefined;
   UserFollow: {
     id: string;
@@ -120,7 +134,9 @@ export type ProfileNavigationProp = NativeStackNavigationProp<
 export type AuthStackNavigatorParamList = {
   'Sign in': undefined;
   'Sign up': undefined;
-  'Confirm email': {username?: string};
+  'Confirm email': {
+    email?: string;
+  };
   'Forgot password': undefined;
   'New password': undefined;
 };

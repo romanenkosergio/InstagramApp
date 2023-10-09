@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   button: {
+    position: 'absolute',
+    right: 15,
     fontSize: fonts.size.s,
     fontWeight: fonts.weight.full,
     color: colors.primary,
-    marginVertical: 'auto',
   },
 });
 

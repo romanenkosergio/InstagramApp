@@ -1,5 +1,5 @@
 interface ForgotPasswordData {
-  username: string;
+  email: string;
 }
 
 export default ForgotPasswordData;

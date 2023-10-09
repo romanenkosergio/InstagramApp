@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Alert, ScrollView, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {useForm} from 'react-hook-form';
+import {Auth} from 'aws-amplify';
 
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
@@ -11,10 +12,7 @@ import SignUpData from './types';
 import {SignUpNavigationProp} from '../../../types/navigation';
 
 import styles from './styles';
-import {Auth} from 'aws-amplify';
-
-const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+import {EMAIL_REGEX} from '../../../config';
 
 const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm<SignUpData>();
@@ -22,23 +20,18 @@ const SignUpScreen = () => {
   const navigation = useNavigation<SignUpNavigationProp>();
   const [loading, setLoading] = useState(false);
 
-  const onRegisterPressed = async ({
-    name,
-    username,
-    password,
-    email,
-  }: SignUpData) => {
+  const onRegisterPressed = async ({name, password, email}: SignUpData) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
       await Auth.signUp({
-        username,
+        username: email,
         password,
         attributes: {email, name},
       });
-      navigation.navigate('Confirm email', {username});
+      navigation.navigate('Confirm email', {email});
     } catch (error) {
       Alert.alert('Error', (error as Error).message);
     } finally {
@@ -77,15 +70,6 @@ const SignUpScreen = () => {
               value: 24,
               message: 'Name should be max 24 characters long',
             },
-          }}
-        />
-
-        <FormInput
-          name="username"
-          control={control}
-          placeholder="Username"
-          rules={{
-            required: 'username is required',
           }}
         />
         <FormInput

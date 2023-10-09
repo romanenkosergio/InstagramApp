@@ -1,8 +1,9 @@
-import {IComment} from '../../types/models';
+import {Comment} from '../../API';
 
 interface ICommentProps {
-  comment: IComment;
+  comment: Comment;
   includeDetails?: boolean;
+  isNew?: boolean;
 }
 
 export default ICommentProps;

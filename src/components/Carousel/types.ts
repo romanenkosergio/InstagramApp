@@ -1,6 +1,7 @@
 interface ICarouselProps {
   images: string[];
-  onDoublePress: () => void;
+  onDoublePress?: () => void;
+  imageWidth?: number | string;
 }
 
 export default ICarouselProps;

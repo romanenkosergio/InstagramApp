@@ -1,8 +1,14 @@
-import {IPost} from '../../types/models';
+import {Post} from '../../API';
 
 interface IFeedPostProps {
-  post: IPost;
+  post: Post;
   isVisible: boolean;
 }
+
+export interface IPostMenuProps {
+  post: Post;
+}
+
+export interface IContentProps extends IFeedPostProps {}
 
 export default IFeedPostProps;

@@ -1,5 +1,5 @@
 export default interface NewPasswordType {
-  username: string;
+  email: string;
   code: string;
   password: string;
 };

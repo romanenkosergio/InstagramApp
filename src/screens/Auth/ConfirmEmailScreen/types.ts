@@ -1,5 +1,5 @@
 interface ConfirmEmailData {
-  username: string;
+  email: string;
   code: string;
 }
 

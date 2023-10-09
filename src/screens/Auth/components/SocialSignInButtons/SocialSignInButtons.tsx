@@ -1,8 +1,9 @@
-import React from 'react';
-import {Alert} from 'react-native';
-import CustomButton from '../CustomButton';
-import {Auth} from 'aws-amplify';
-import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
+import React from "react";
+import { Alert } from "react-native";
+import { Auth } from "aws-amplify";
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
+
+import CustomButton from "../CustomButton";
 
 const SocialSignInButtons = () => {
   const onSignInFacebook = async () => {
@@ -11,7 +12,7 @@ const SocialSignInButtons = () => {
         provider: CognitoHostedUIIdentityProvider.Facebook,
       });
     } catch (e) {
-      Alert.alert('Ops', (e as Error).message);
+      Alert.alert("Ops", (e as Error).message);
     }
   };
 
@@ -21,12 +22,12 @@ const SocialSignInButtons = () => {
         provider: CognitoHostedUIIdentityProvider.Google,
       });
     } catch (e) {
-      Alert.alert('Ops', (e as Error).message);
+      Alert.alert("Ops", (e as Error).message);
     }
   };
 
   const onSignInApple = () => {
-    console.warn('onSignInApple');
+    console.warn("onSignInApple");
   };
 
   return (

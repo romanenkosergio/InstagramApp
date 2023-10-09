@@ -1,7 +1,7 @@
-import {IUser} from '../../types/models';
+import {User} from '../../API';
 
 interface IUserListItemProps {
-  user: IUser;
+  user: User;
 }
 
 export default IUserListItemProps;

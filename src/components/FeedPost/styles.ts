@@ -1,22 +1,8 @@
-import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import fonts from '../../theme/fonts';
 import colors from '../../theme/colors';
 
-interface IFeedPostStyles {
-  post: ViewStyle;
-  header: ViewStyle;
-  userAvatar: ImageStyle;
-  userName: TextStyle;
-  threeDots: ViewStyle;
-  image: ImageStyle;
-  footer: ViewStyle;
-  iconContainer: ViewStyle;
-  icon: ViewStyle;
-  text: TextStyle;
-  bold: TextStyle;
-}
-
-const styles = StyleSheet.create<IFeedPostStyles>({
+const styles = StyleSheet.create({
   post: {
     flex: 1,
   },
@@ -25,18 +11,18 @@ const styles = StyleSheet.create<IFeedPostStyles>({
     alignItems: 'center',
     padding: 10,
   },
-  userAvatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
-  },
+
   userName: {
     fontWeight: fonts.weight.bold,
     color: colors.black,
   },
   threeDots: {
     marginLeft: 'auto',
+  },
+  optionText: {
+    textAlign: 'center',
+    fontSize: fonts.size.lg,
+    padding: 10,
   },
   image: {
     width: '100%',

@@ -1,25 +1,29 @@
 import {FC, useState} from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import {Pressable, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
-import {useNavigation} from '@react-navigation/native';
+import dayjs from 'dayjs';
 
-import DoublePressable from '../DoublePressable';
-import Carousel from '../Carousel';
-import VideoPlayer from '../VideoPlayer';
 import Comment from '../Comment';
+import PostMenu from './PostMenu';
+import Content from './Content';
+import DoublePressable from '../DoublePressable';
 
-import colors from '../../theme/colors';
 import IFeedPostProps from './types';
 import {FeedNavigationProp} from '../../types/navigation';
+import useLikeService from '../../services/LikeService';
 
+import colors from '../../theme/colors';
 import styles from './styles';
+import UserImage from '../UserImage/UserImage';
 
 const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const [isLiked, setIsLiked] = useState<boolean>(false);
+  const {toggleLike, isLiked} = useLikeService(post);
+
+  const postLikes = post?.Likes?.items || [];
 
   const navigation = useNavigation<FeedNavigationProp>();
 
@@ -27,63 +31,39 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
     setIsDescriptionExpanded(prevState => !prevState);
   };
 
-  const toggleLike = () => {
-    setIsLiked(prevState => !prevState);
-  };
-
-  const navigateUser = () => {
-    navigation.navigate('UserProfile', {userId: post.user.id});
+  const navigateToUser = () => {
+    if (post.User) {
+      navigation.navigate('UserProfile', {
+        screen: 'Profile',
+        params: {userId: post.User.id},
+      });
+    }
   };
 
   const navigateToComments = () => {
     navigation.navigate('Comments', {postId: post.id});
   };
 
-  let content = null;
-  if (post.image) {
-    content = (
-      <DoublePressable onDoublePress={toggleLike}>
-        <Image
-          source={{
-            uri: post.image,
-          }}
-          style={styles.image}
-        />
-      </DoublePressable>
-    );
-  } else if (post.images) {
-    content = <Carousel images={post.images} onDoublePress={toggleLike} />;
-  } else if (post.video) {
-    content = (
-      <DoublePressable onDoublePress={toggleLike}>
-        <VideoPlayer uri={post.video} paused={!isVisible} />
-      </DoublePressable>
-    );
-  }
+  const navigateToLikes = () => {
+    navigation.navigate('PostLikes', {id: post.id});
+  };
+
   return (
     <View style={styles.post}>
       {/*Header*/}
       <View style={styles.header}>
-        <Image
-          source={{
-            uri: post.user.image,
-          }}
-          style={styles.userAvatar}
-        />
-        <Text onPress={navigateUser} style={styles.userName}>
-          {post.user.username}
+        <UserImage imageKey={post.User?.image || undefined} />
+        <Text onPress={navigateToUser} style={styles.userName}>
+          {post.User?.username}
         </Text>
-        <Entypo
-          name="dots-three-horizontal"
-          size={16}
-          style={styles.threeDots}
-        />
+        <PostMenu post={post} />
       </View>
       {/*Content*/}
-      {content}
+      <DoublePressable onDoublePress={toggleLike}>
+        <Content {...{post, isVisible}} />
+      </DoublePressable>
 
       {/*Footer*/}
-
       <View style={styles.footer}>
         <View style={styles.iconContainer}>
           <Pressable onPress={toggleLike}>
@@ -96,19 +76,28 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
           </Pressable>
           <Ionicons name="chatbubble-outline" size={24} style={styles.icon} />
           <Feather name="send" size={24} style={styles.icon} />
-
           <Feather name="bookmark" size={24} style={{marginLeft: 'auto'}} />
         </View>
 
         {/* Likes */}
-        <Text style={styles.text}>
-          Liked by <Text style={styles.bold}>romanenkokatrin</Text> and{' '}
-          <Text style={styles.bold}>{post.nofLikes}</Text> others
-        </Text>
+        {postLikes.length === 0 ? (
+          <Text>Be the first to like the post</Text>
+        ) : (
+          <Text style={styles.text} onPress={navigateToLikes}>
+            Liked by{' '}
+            <Text style={styles.bold}>{postLikes[0]?.User?.username}</Text>
+            {postLikes.length > 1 && (
+              <>
+                {' '}
+                and <Text style={styles.bold}>{post.nofLikes - 1}</Text> others
+              </>
+            )}
+          </Text>
+        )}
 
         {/* Caption */}
         <Text style={styles.text} numberOfLines={isDescriptionExpanded ? 0 : 3}>
-          <Text style={styles.bold}>{post.user.username}</Text>{' '}
+          <Text style={styles.bold}>{post.User?.username}</Text>{' '}
           {post.description}
         </Text>
         <Text onPress={toggleDescriptionExpanded}>
@@ -119,11 +108,14 @@ const FeedPost: FC<IFeedPostProps> = ({post, isVisible}) => {
         <Text onPress={navigateToComments}>
           View all {post.nofComments} comments
         </Text>
-        {post.comments.map(comment => (
-          <Comment key={`comment-${comment.id}`} comment={comment} />
-        ))}
+        {(post.Comments?.items || []).map(
+          comment =>
+            comment && (
+              <Comment key={`comment-${comment.id}`} comment={comment} />
+            ),
+        )}
         {/* Posted Date */}
-        <Text style={styles.text}>{post.createdAt}</Text>
+        <Text style={styles.text}>{dayjs(post.createdAt).fromNow()}</Text>
       </View>
     </View>
   );

@@ -1,26 +1,43 @@
 import {FC, useState} from 'react';
-import {Image, Pressable, Text, View} from 'react-native';
-import styles from './styles';
+import {Pressable, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import dayjs from 'dayjs';
+
+import UserImage from '../UserImage';
+
 import ICommentProps from './types';
+
+import styles from './styles';
 import colors from '../../theme/colors';
 
-const Comment: FC<ICommentProps> = ({comment, includeDetails}) => {
+const Comment: FC<ICommentProps> = ({
+  comment,
+  includeDetails,
+  isNew = false,
+}) => {
   const [liked, setLiked] = useState<boolean>(false);
   const toggleLike = () => setLiked(v => !v);
+  console.log(comment.User?.image);
   return (
     <View style={styles.comment}>
       {includeDetails && (
-        <Image source={{uri: comment.user.image}} style={styles.avatar} />
+        <UserImage
+          size={'xs'}
+          imageKey={comment.User?.image || undefined}
+          styles={{marginRight: 5}}
+        />
       )}
       <View style={styles.middleColumn}>
         <Text style={styles.commentText}>
-          <Text style={styles.bold}>{comment.user.username}</Text>{' '}
+          <Text style={styles.bold}>{comment.User?.username}</Text>{' '}
           {comment.comment}
         </Text>
         {includeDetails && (
           <View style={styles.footer}>
-            <Text style={styles.footerText}>2d</Text>
+            {isNew && <Text style={styles.new}>new</Text>}
+            <Text style={styles.footerText}>
+              {dayjs(comment.createdAt).fromNow()}
+            </Text>
             <Text style={styles.footerText}>5 likes</Text>
             <Text style={styles.footerText}>Reply</Text>
           </View>

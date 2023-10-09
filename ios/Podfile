@@ -5,7 +5,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '13.0'
 install! 'cocoapods', :deterministic_uuids => false
 
-target 'notJustPhotos' do
+target 'PixeLife' do
   use_expo_modules!
   post_integrate do |installer|
     begin
@@ -35,7 +35,7 @@ target 'notJustPhotos' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'notJustPhotosTests' do
+  target 'PixeLifeTests' do
     inherit! :complete
     # Pods for testing
   end

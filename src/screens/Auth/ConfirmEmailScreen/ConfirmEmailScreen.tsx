@@ -12,30 +12,28 @@ import {
   ConfirmEmailRouteProp,
 } from '../../../types/navigation';
 import ConfirmEmailData from './types';
+import {EMAIL_REGEX} from '../../../config';
 
 import styles from './styles';
-
-const EMAIL_REGEX =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const ConfirmEmailScreen: FC = () => {
   const route = useRoute<ConfirmEmailRouteProp>();
   const {control, handleSubmit, watch} = useForm<ConfirmEmailData>({
-    defaultValues: {username: route.params.username},
+    defaultValues: {email: route.params.email},
   });
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
 
-  const usr = watch('username');
+  const eml = watch('email');
 
-  const onConfirmPressed = async ({username, code}: ConfirmEmailData) => {
+  const onConfirmPressed = async ({email, code}: ConfirmEmailData) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      await Auth.confirmSignUp(username, code);
+      await Auth.confirmSignUp(email, code);
       navigation.navigate('Sign in');
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
@@ -50,7 +48,7 @@ const ConfirmEmailScreen: FC = () => {
 
   const onResendPress = async () => {
     try {
-      await Auth.resendSignUp(usr);
+      await Auth.resendSignUp(eml);
     } catch (e) {
       Alert.alert('Oops', (e as Error).message);
     }
@@ -62,11 +60,12 @@ const ConfirmEmailScreen: FC = () => {
         <Text style={styles.title}>Confirm your email</Text>
 
         <FormInput
-          name="username"
+          name="email"
           control={control}
-          placeholder="username"
+          placeholder="Email"
           rules={{
-            required: 'Username is required',
+            required: 'Email is required',
+            pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
           }}
         />
 

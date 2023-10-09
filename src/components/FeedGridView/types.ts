@@ -1,15 +1,17 @@
-import {IPost} from '../../types/models';
 import * as React from 'react';
+import {Post} from '../../API';
 
 export interface IFeedGreedViewProps {
-  data: IPost[];
+  data: (Post | null)[];
   ListHeaderComponent?:
     | React.ComponentType<any>
     | React.ReactElement<unknown>
     | null
     | undefined;
+  refetch: () => void;
+  loading: boolean;
 }
 
 export interface IFeedGreedItemProps {
-  post: IPost;
+  post: Post;
 }

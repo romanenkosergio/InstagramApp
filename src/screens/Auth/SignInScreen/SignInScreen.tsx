@@ -9,12 +9,10 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {Auth} from 'aws-amplify';
-import {CognitoUser} from 'amazon-cognito-identity-js';
 
 import FormInput from '../components/FormInput';
 import CustomButton from '../components/CustomButton';
 import SocialSignInButtons from '../components/SocialSignInButtons';
-import {useAuthContext} from '../../../context/AuthContext';
 
 import {SignInNavigationProp} from '../../../types/navigation';
 import SignInData from './types';
@@ -25,21 +23,19 @@ const SignInScreen: FC = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation<SignInNavigationProp>();
   const [loading, setLoading] = useState<boolean>(false);
-  const {setUser} = useAuthContext();
 
   const {control, handleSubmit, reset} = useForm<SignInData>();
 
-  const onSignInPressed = async ({username, password}: SignInData) => {
+  const onSignInPressed = async ({email, password}: SignInData) => {
     if (loading) {
       return;
     }
     setLoading(true);
     try {
-      const cognitoUser: CognitoUser = await Auth.signIn(username, password);
-      setUser(cognitoUser);
+      await Auth.signIn(email, password);
     } catch (error) {
       if ((error as Error).name === 'UserNotConfirmedException') {
-        navigation.navigate('Confirm email', {username});
+        navigation.navigate('Confirm email', {email});
         return;
       }
       Alert.alert('Error', (error as Error).message);
@@ -67,10 +63,10 @@ const SignInScreen: FC = () => {
         />
 
         <FormInput
-          name="username"
-          placeholder="Username"
+          name="email"
+          placeholder="Email"
           control={control}
-          rules={{required: 'Username is required'}}
+          rules={{required: 'Email is required'}}
         />
 
         <FormInput

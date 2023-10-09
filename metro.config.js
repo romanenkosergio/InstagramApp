@@ -5,6 +5,11 @@
  * @format
  */
 
+const {getDefaultConfig} = require('@expo/metro-config');
+const blacklist = require('metro-config/src/defaults/exclusionList');
+
+const config = getDefaultConfig(__dirname);
+
 module.exports = {
   transformer: {
     getTransformOptions: async () => ({
@@ -13,5 +18,9 @@ module.exports = {
         inlineRequires: true,
       },
     }),
+  },
+  resolver: {
+    blacklistRE: blacklist([/#current-cloud-backend\/.*/]),
+    sourceExts: [...config.resolver.sourceExts, 'cjs'],
   },
 };

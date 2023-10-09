@@ -12,7 +12,11 @@ import ICarouselProps from './types';
 import colors from '../../theme/colors';
 import DoublePressable from '../DoublePressable';
 
-const Carousel: FC<ICarouselProps> = ({images, onDoublePress = () => {}}) => {
+const Carousel: FC<ICarouselProps> = ({
+  images,
+  onDoublePress = () => {},
+  imageWidth,
+}) => {
   const {width} = useWindowDimensions();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -34,7 +38,10 @@ const Carousel: FC<ICarouselProps> = ({images, onDoublePress = () => {}}) => {
         data={images}
         renderItem={({item}) => (
           <DoublePressable onDoublePress={onDoublePress}>
-            <Image source={{uri: item}} style={{width, aspectRatio: 1}} />
+            <Image
+              source={{uri: item}}
+              style={{width: imageWidth || width, aspectRatio: 1}}
+            />
           </DoublePressable>
         )}
         horizontal

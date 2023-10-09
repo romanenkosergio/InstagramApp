@@ -1,9 +1,7 @@
 import {
   createContext,
-  Dispatch,
   FC,
   PropsWithChildren,
-  SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -15,28 +13,29 @@ type UserType = CognitoUser | null | undefined;
 
 interface AuthContextType {
   user: UserType;
-  setUser: Dispatch<SetStateAction<UserType>>;
+  userId: string;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  setUser: () => {},
+  userId: '',
 });
 
 const AuthContextProvider: FC<PropsWithChildren> = ({children}) => {
   const [user, setUser] = useState<UserType>(undefined);
 
+  const checkUser = async () => {
+    try {
+      const authUser = await Auth.currentAuthenticatedUser({
+        bypassCache: true,
+      });
+      setUser(authUser);
+    } catch (e) {
+      setUser(null);
+    }
+  };
+
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const authUser = await Auth.currentAuthenticatedUser({
-          bypassCache: true,
-        });
-        setUser(authUser);
-      } catch (e) {
-        setUser(null);
-      }
-    };
     checkUser();
   }, []);
 
@@ -46,13 +45,16 @@ const AuthContextProvider: FC<PropsWithChildren> = ({children}) => {
       if (event === 'signOut') {
         setUser(null);
       }
+      if (event === 'signIn') {
+        checkUser();
+      }
     };
     const hubListenerCancelToken = Hub.listen('auth', listener);
     return () => hubListenerCancelToken();
   }, []);
 
   return (
-    <AuthContext.Provider value={{user, setUser}}>
+    <AuthContext.Provider value={{user, userId: user?.attributes?.sub}}>
       {children}
     </AuthContext.Provider>
   );

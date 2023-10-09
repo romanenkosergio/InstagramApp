@@ -10,7 +10,6 @@ export default StyleSheet.create({
 
     padding: 5,
 
-    flex: 1,
     alignItems: 'center',
 
     margin: 5,

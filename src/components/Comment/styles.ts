@@ -1,20 +1,8 @@
-import {ImageStyle, StyleSheet, TextStyle, ViewStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 import fonts from '../../theme/fonts';
 import colors from '../../theme/colors';
 
-interface ICommentStyles {
-  avatar: ImageStyle;
-  icon: ViewStyle;
-  middleColumn: ViewStyle;
-  text: TextStyle;
-  bold: TextStyle;
-  footer: ViewStyle;
-  footerText: TextStyle;
-  comment: ViewStyle;
-  commentText: TextStyle;
-}
-
-const styles = StyleSheet.create<ICommentStyles>({
+const styles = StyleSheet.create({
   avatar: {
     width: 40,
     aspectRatio: 1,
@@ -48,6 +36,14 @@ const styles = StyleSheet.create<ICommentStyles>({
   },
   commentText: {
     color: colors.black,
+  },
+  new: {
+    backgroundColor: colors.primary,
+    color: colors.white,
+    paddingHorizontal: 5,
+    marginRight: 5,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
 });
 
