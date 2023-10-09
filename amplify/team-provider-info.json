@@ -16,5 +16,23 @@
         "Instagram": {}
       }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-instagram-dev-105642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::189289918902:role/amplify-instagram-dev-105642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::189289918902:role/amplify-instagram-dev-105642-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-instagram-dev-105642-deployment",
+      "UnauthRoleName": "amplify-instagram-dev-105642-unauthRole",
+      "StackName": "amplify-instagram-dev-105642",
+      "StackId": "arn:aws:cloudformation:eu-north-1:189289918902:stack/amplify-instagram-dev-105642/66716ed0-6679-11ee-bc05-06d8ba146dac",
+      "AmplifyAppId": "dh96uoculh9np"
+    },
+    "categories": {
+      "auth": {
+        "Instagram": {}
+      }
+    }
   }
 }
