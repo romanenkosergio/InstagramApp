@@ -41,6 +41,7 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -67,6 +68,7 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -78,10 +80,12 @@ export const createLike = /* GraphQL */ `mutation CreateLike(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -122,6 +126,7 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -148,6 +153,7 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -159,10 +165,12 @@ export const updateLike = /* GraphQL */ `mutation UpdateLike(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -203,6 +211,7 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -229,6 +238,7 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -240,10 +250,12 @@ export const deleteLike = /* GraphQL */ `mutation DeleteLike(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -286,6 +298,7 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -312,6 +325,7 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -323,9 +337,11 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -368,6 +384,7 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -394,6 +411,7 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -405,9 +423,11 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -450,6 +470,7 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Post {
@@ -476,6 +497,7 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
         nofFollowings
         createdAt
         updatedAt
+        owner
         __typename
       }
       Likes {
@@ -487,9 +509,11 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
         __typename
       }
       updatedAt
+      owner
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -537,6 +561,7 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Likes {
@@ -546,6 +571,7 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -559,12 +585,14 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -612,6 +640,7 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Likes {
@@ -621,6 +650,7 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -634,12 +664,14 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -687,6 +719,7 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
     Likes {
@@ -696,6 +729,7 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -709,12 +743,14 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
       __typename
     }
     updatedAt
+    owner
     __typename
   }
 }
@@ -750,6 +786,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
         nofLikes
         userID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -763,6 +800,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -775,6 +813,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -782,6 +821,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -817,6 +857,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
         nofLikes
         userID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -830,6 +871,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -842,6 +884,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -849,6 +892,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }
@@ -884,6 +928,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
         nofLikes
         userID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -897,6 +942,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
         userID
         postID
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -909,6 +955,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
         postID
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -916,6 +963,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     }
     createdAt
     updatedAt
+    owner
     __typename
   }
 }

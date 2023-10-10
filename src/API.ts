@@ -65,6 +65,7 @@ export type Like = {
   Post?: Post | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type User = {
@@ -84,6 +85,7 @@ export type User = {
   Likes?: ModelLikeConnection | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type ModelPostConnection = {
@@ -108,6 +110,7 @@ export type Post = {
   Likes?: ModelLikeConnection | null,
   Comments?: ModelCommentConnection | null,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type ModelLikeConnection = {
@@ -132,6 +135,7 @@ export type Comment = {
   User?: User | null,
   Post?: Post | null,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type UpdateLikeInput = {
@@ -503,6 +507,7 @@ export type CreateLikeMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -530,6 +535,7 @@ export type CreateLikeMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -540,9 +546,11 @@ export type CreateLikeMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -583,6 +591,7 @@ export type UpdateLikeMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -610,6 +619,7 @@ export type UpdateLikeMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -620,9 +630,11 @@ export type UpdateLikeMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -663,6 +675,7 @@ export type DeleteLikeMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -690,6 +703,7 @@ export type DeleteLikeMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -700,9 +714,11 @@ export type DeleteLikeMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -745,6 +761,7 @@ export type CreateCommentMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -772,6 +789,7 @@ export type CreateCommentMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -782,8 +800,10 @@ export type CreateCommentMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -826,6 +846,7 @@ export type UpdateCommentMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -853,6 +874,7 @@ export type UpdateCommentMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -863,8 +885,10 @@ export type UpdateCommentMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -907,6 +931,7 @@ export type DeleteCommentMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -934,6 +959,7 @@ export type DeleteCommentMutation = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -944,8 +970,10 @@ export type DeleteCommentMutation = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -993,6 +1021,7 @@ export type CreatePostMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -1003,6 +1032,7 @@ export type CreatePostMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1016,10 +1046,12 @@ export type CreatePostMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1067,6 +1099,7 @@ export type UpdatePostMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -1077,6 +1110,7 @@ export type UpdatePostMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1090,10 +1124,12 @@ export type UpdatePostMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1141,6 +1177,7 @@ export type DeletePostMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -1151,6 +1188,7 @@ export type DeletePostMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1164,10 +1202,12 @@ export type DeletePostMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1204,6 +1244,7 @@ export type CreateUserMutation = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1217,6 +1258,7 @@ export type CreateUserMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1229,11 +1271,13 @@ export type CreateUserMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1270,6 +1314,7 @@ export type UpdateUserMutation = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1283,6 +1328,7 @@ export type UpdateUserMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1295,11 +1341,13 @@ export type UpdateUserMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1336,6 +1384,7 @@ export type DeleteUserMutation = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1349,6 +1398,7 @@ export type DeleteUserMutation = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1361,11 +1411,13 @@ export type DeleteUserMutation = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1405,6 +1457,7 @@ export type GetLikeQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -1432,6 +1485,7 @@ export type GetLikeQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -1442,9 +1496,11 @@ export type GetLikeQuery = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1476,6 +1532,7 @@ export type ListLikesQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1490,9 +1547,11 @@ export type ListLikesQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1528,6 +1587,7 @@ export type LikesByUserIDQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1542,9 +1602,11 @@ export type LikesByUserIDQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1581,6 +1643,7 @@ export type LikesForPostByUserQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1595,9 +1658,11 @@ export type LikesForPostByUserQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1641,6 +1706,7 @@ export type GetCommentQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -1668,6 +1734,7 @@ export type GetCommentQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -1678,8 +1745,10 @@ export type GetCommentQuery = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1713,6 +1782,7 @@ export type ListCommentsQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1727,8 +1797,10 @@ export type ListCommentsQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1766,6 +1838,7 @@ export type CommentsByUserIDQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1780,8 +1853,10 @@ export type CommentsByUserIDQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1820,6 +1895,7 @@ export type CommentsByPostQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Post?:  {
         __typename: "Post",
@@ -1834,8 +1910,10 @@ export type CommentsByPostQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1884,6 +1962,7 @@ export type GetPostQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -1894,6 +1973,7 @@ export type GetPostQuery = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -1907,10 +1987,12 @@ export type GetPostQuery = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -1949,6 +2031,7 @@ export type ListPostsQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -1959,6 +2042,7 @@ export type ListPostsQuery = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2002,6 +2086,7 @@ export type PostsByDateQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2012,6 +2097,7 @@ export type PostsByDateQuery = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2054,6 +2140,7 @@ export type PostsByUserIDQuery = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2064,6 +2151,7 @@ export type PostsByUserIDQuery = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2101,6 +2189,7 @@ export type GetUserQuery = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -2114,6 +2203,7 @@ export type GetUserQuery = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -2126,11 +2216,13 @@ export type GetUserQuery = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -2169,6 +2261,7 @@ export type ListUsersQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2211,6 +2304,7 @@ export type UserByUsernameQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -2254,6 +2348,7 @@ export type OnCreateCommentByPostIdSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2281,6 +2376,7 @@ export type OnCreateCommentByPostIdSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2291,13 +2387,16 @@ export type OnCreateCommentByPostIdSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateLikeSubscription = {
@@ -2332,6 +2431,7 @@ export type OnCreateLikeSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2359,6 +2459,7 @@ export type OnCreateLikeSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2369,14 +2470,17 @@ export type OnCreateLikeSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateLikeSubscription = {
@@ -2411,6 +2515,7 @@ export type OnUpdateLikeSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2438,6 +2543,7 @@ export type OnUpdateLikeSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2448,14 +2554,17 @@ export type OnUpdateLikeSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteLikeSubscriptionVariables = {
   filter?: ModelSubscriptionLikeFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteLikeSubscription = {
@@ -2490,6 +2599,7 @@ export type OnDeleteLikeSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2517,6 +2627,7 @@ export type OnDeleteLikeSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2527,14 +2638,17 @@ export type OnDeleteLikeSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateCommentSubscription = {
@@ -2571,6 +2685,7 @@ export type OnCreateCommentSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2598,6 +2713,7 @@ export type OnCreateCommentSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2608,13 +2724,16 @@ export type OnCreateCommentSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateCommentSubscription = {
@@ -2651,6 +2770,7 @@ export type OnUpdateCommentSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2678,6 +2798,7 @@ export type OnUpdateCommentSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2688,13 +2809,16 @@ export type OnUpdateCommentSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteCommentSubscriptionVariables = {
   filter?: ModelSubscriptionCommentFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteCommentSubscription = {
@@ -2731,6 +2855,7 @@ export type OnDeleteCommentSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Post?:  {
       __typename: "Post",
@@ -2758,6 +2883,7 @@ export type OnDeleteCommentSubscription = {
         nofFollowings: number,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       Likes?:  {
         __typename: "ModelLikeConnection",
@@ -2768,13 +2894,16 @@ export type OnDeleteCommentSubscription = {
         nextToken?: string | null,
       } | null,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreatePostSubscription = {
@@ -2816,6 +2945,7 @@ export type OnCreatePostSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -2826,6 +2956,7 @@ export type OnCreatePostSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -2839,15 +2970,18 @@ export type OnCreatePostSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdatePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdatePostSubscription = {
@@ -2889,6 +3023,7 @@ export type OnUpdatePostSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -2899,6 +3034,7 @@ export type OnUpdatePostSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -2912,15 +3048,18 @@ export type OnUpdatePostSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeletePostSubscriptionVariables = {
   filter?: ModelSubscriptionPostFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeletePostSubscription = {
@@ -2962,6 +3101,7 @@ export type OnDeletePostSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     Likes?:  {
       __typename: "ModelLikeConnection",
@@ -2972,6 +3112,7 @@ export type OnDeletePostSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -2985,15 +3126,18 @@ export type OnDeletePostSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateUserSubscription = {
@@ -3024,6 +3168,7 @@ export type OnCreateUserSubscription = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3037,6 +3182,7 @@ export type OnCreateUserSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3049,16 +3195,19 @@ export type OnCreateUserSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -3089,6 +3238,7 @@ export type OnUpdateUserSubscription = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3102,6 +3252,7 @@ export type OnUpdateUserSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3114,16 +3265,19 @@ export type OnUpdateUserSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteUserSubscription = {
@@ -3154,6 +3308,7 @@ export type OnDeleteUserSubscription = {
         nofLikes: number,
         userID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3167,6 +3322,7 @@ export type OnDeleteUserSubscription = {
         userID: string,
         postID: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
@@ -3179,10 +3335,12 @@ export type OnDeleteUserSubscription = {
         postID: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
