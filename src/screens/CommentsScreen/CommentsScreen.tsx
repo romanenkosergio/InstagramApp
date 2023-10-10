@@ -63,7 +63,7 @@ const CommentsScreen = () => {
   useEffect(() => {
     if (newCommentsData?.onCreateCommentByPostId) {
       setNewComments(existingNewComments => [
-        newCommentsData.onCreateCommentByPostId as CommentType,
+        newCommentsData.onCreateCommentByPostId as Comment,
         ...existingNewComments,
       ]);
     }

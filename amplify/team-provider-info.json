@@ -45,6 +45,10 @@
     "categories": {
       "auth": {
         "Instagram": {}
+      },
+      "function": {
+        "InstagramPostConfirmation": {},
+        "Instagram": {}
       }
     }
   },
